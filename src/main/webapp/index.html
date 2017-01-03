@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Agario Clone</title>
+        <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+        <link rel="stylesheet" href="styles/menu.css" />
+        <link rel="stylesheet" href="styles/game.css" />
+    </head>
+
+    <body>
+        <canvas id="canvas"></canvas>
+
+        <div id='m-container' class='no-user-select'>
+            <div id="m-alias-form">
+                <div>
+                    <span class="m-title">Agar.io-Clone</span><span class='m-sub-title'>Developed by Jaskaran</span>
+                </div>
+                <hr />
+                
+                <label for='m-alias-field' id='m-alias-field-label' class='m-form-element'>What's Your Alias Mortal? </label>
+                <input type='text' id='m-alias-field' class='m-form-element' placeholder='Nick' autofocus /><br />
+                <button id='m-play-button' class='m-form-element m-form-button'>Play Game</button>
+                <button id='m-leaderboard-open-button' class='m-form-element m-form-button'>Leaderboard</button>
+
+                <hr />
+                <div id='m-instructions'>
+                    <span class='underline'>Controls</span>
+                    <table id='m-instructions-table'>
+                        <tr>
+                            <th>Mouse:</th>
+                            <td>Move</td>
+                        </tr>
+                        <tr>
+                            <th>C:</th>
+                            <td>Color Switch Mode</td>
+                        </tr>
+                        <tr>
+                            <th>T:</th>
+                            <td>Chat</td>
+                        </tr>
+                        <tr>
+                            <th>Q:</th>
+                            <td>Hide/Show Chat</td>
+                        </tr>
+                        <tr>
+                            <th>Enter:</th>
+                            <td>Send Chat Message</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id="m-leaderboard">
+                <table id='m-leaderboard-table'>
+                    <tr>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                </table>
+                <div id='m-leaderboard-close-button'>X</div>
+            </div>
+
+            <div id="m-game-load-text">Loading Stage</div>
+        </div>
+        
+        
+        <!--Menu controls end. Game controls begin.-->
+        
+
+        <div id="g-score-container" class='no-user-select'>XP: <span id="g-score">0</span></div>
+
+        <div id="g-leaderboard" class='no-user-select'>
+            <h2>Leaderboard</h2>
+            <div id='g-leaderboard-names'><div class='g-leaderboard-wait-text'>Waiting for score update...</div></div>
+        </div>
+
+        <div id="g-perf-warning" class='no-user-select'>Your device is running too slow. This may impact game experience.</div>
+        
+        <div id="g-chat-box" class='no-user-select'>
+            <div id="g-chat-display"></div>
+            <div id="g-chat-text">
+                <input type="text" id="g-chat-textfield" />
+            </div>
+        </div>
+
+        <form id="g-end-form" action="Result">
+            <input name="alias" type="hidden" id="g-alias" />
+            <input name="finalScore" type="hidden" id="g-final-score" />
+        </form>
+
+        <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+        
+        <script type="text/javascript" src="scripts/stage.js"></script>
+        <script type="text/javascript" src="scripts/global.js"></script>
+        <script type="text/javascript" src="scripts/player.js"></script>
+        <script type="text/javascript" src="scripts/foods.js"></script>
+        <script type="text/javascript" src="scripts/enemies.js"></script>
+        <script type="text/javascript" src="scripts/leaderboard.js"></script>
+        <script type="text/javascript" src="scripts/chat.js"></script>
+        <script type="text/javascript" src="scripts/perf-monitor.js"></script>
+        <script type="text/javascript" src="scripts/gameloop.js"></script>
+        <script type="text/javascript" src="scripts/websocket.js"></script>
+        <script type="text/javascript" src="scripts/event-handlers.js"></script>
+    </body>
+</html>

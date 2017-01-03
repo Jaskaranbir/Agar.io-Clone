@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+  <tlib-version>1.0</tlib-version>
+  <short-name>score_comm</short-name>
+  <uri>/WEB-INF/tlds/score_comm</uri>
+  <tag>
+    <name>ScoreComment</name>
+    <tag-class>com.agario.tag.ScoreComment</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>score</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+</taglib>

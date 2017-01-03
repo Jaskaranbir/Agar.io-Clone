@@ -1,0 +1,140 @@
+#g-score-container {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    text-shadow:
+        -2px -2px 2px rgba(0,0,0,0.3),
+        2px -2px 2px rgba(0,0,0,0.3),
+        -2px 2px 2px rgba(0,0,0,0.3),
+        2px 2px 2px rgba(0,0,0,0.3);
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    opacity: 0;
+    cursor: default;
+}
+
+#g-leaderboard {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    width: 281px;
+    height: 352px;
+    font-weight: bold;
+    font-size: 22px;
+    background-color: rgba(0,0,0,0.7);
+    opacity: 0.8;
+    color: white;
+    font-family: roboto;
+    z-index: 4;
+    opacity: 0;
+    cursor: default;
+}
+
+#g-leaderboard h2 {
+    margin: 10px 0 0 0;
+    border-bottom: 1px solid white;
+    text-align: center;
+}
+
+#g-leaderboard-names ul {
+    margin: 15px 5px 0 5px;
+    list-style-type: decimal;
+}
+
+.g-leaderboard-wait-text {
+    text-align: center;
+}
+
+#g-perf-warning {
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    bottom: 40px;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    padding: 4px 2px 6px 2px;
+    font-size: 2em;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    -webkit-transition: opacity 2s;
+    transition: opacity 2s;
+    cursor: default;
+}
+
+.g-warning-visible {
+    opacity: 0.7 !important;
+}
+
+#g-chat-box {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 400px;
+    height: 400px;
+    color: black;
+    opacity: 1;
+    -webkit-transition: bottom 400ms, opacity 300ms;
+    transition: bottom 400ms, opacity 300ms;
+}
+
+.g-chat-box-hidden {
+    bottom: -100% !important;
+    opacity: 0 !important;
+}
+
+#g-chat-display {
+    height: 90%;
+    margin-top: 3px;
+    padding: 5px 0 0 4px;
+    overflow: hidden;
+    font-size: 1.15em;
+    text-shadow:
+        -1px -1px 0 rgba(255,255,255,255.3),
+        1px -1px 0 rgba(255,255,255,255.3),
+        -1px 1px 0 rgba(255,255,255,255.3),
+        1px 1px 0 rgba(255,255,255,255.3);
+    color: #777;
+}
+
+#g-chat-text {
+    position: absolute;
+    height: 10%;
+    width: 97%;
+}
+
+#g-chat-textfield {
+    height: 100%;
+    width: 0;
+    padding: 0 2% 0 3px;
+    font-size: 1.15em;
+    border-top-right-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    -webkit-transition: background-color 450ms, width 200ms;
+    transition: background-color 450ms, width 200ms;
+}
+
+.g-chat-textfield-focused {
+    background-color: rgba(0,0,0,0.6) !important;
+    width: 100% !important;
+}
+
+.break-word {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.red-text {
+    color: #ff9696;
+}
