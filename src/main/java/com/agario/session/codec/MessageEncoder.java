@@ -54,9 +54,8 @@ public class MessageEncoder {
         
         for(int i = 0, size = players.size(); i < size; i++) {
             Player p = players.get(i);
-            if(p == null)
-                continue;
-            out += p.getId() + "," + p.getxPos() + "," + p.getyPos() + "," + p.getScore() + "," + p.getColor_hue() + "," + p.getColor_saturation() + "," + p.getAlias() + "|";
+            if(p != null)
+                out += p.getId() + "," + p.getxPos() + "," + p.getyPos() + "," + p.getScore() + "," + p.getColor_hue() + "," + p.getColor_saturation() + "," + p.getAlias() + "|";
         }
         out = out.substring(0, out.length() - 1) + "^";
         
