@@ -100,29 +100,29 @@ There are two methods to setup the environment for running this game.
 
 **On Windows**
 
-Since Docker config used is based on linux containers, windows users will have to run it inside a VM. So, download and install [Vagrant][12] and [Virtualbox][13].
+* Since Docker config used is based on linux containers, windows users will have to run it inside a VM. So, download and install [Vagrant][12] and [Virtualbox][13].
 
-Go to project directory and run `vagrant up` in terminal.
+* Go to project directory and run `vagrant up` in terminal.
 
-This will setup Vagrant and docker containers and deploy application on address `http://localhost:8080/agario` (if port `8080` is already in use, some other port will be used. The new port will be listed in Vagrant output).
+* This will setup Vagrant and docker containers and deploy application on address `http://localhost:8080/agario` (if port `8080` is already in use, some other port will be used. The new port will be listed in Vagrant output).
 
-If for some reason, docker containers do not build, you can ssh into VM using `vagrant ssh` and then use the command `cd /vagrant && docker-compose up -d` to try building again.
+* If for some reason, docker containers do not build, you can ssh into VM using `vagrant ssh` and then use the command `cd /vagrant && docker-compose up -d` to try building again.
 
 **On Linux**
 
-Download and install docker and docker-compose.
+* Download and install docker and docker-compose.
 
-Go to project directory and run `docker-compose up -d`.
+* Go to project directory and run `docker-compose up -d`.
 
-Ensure port `8080` is free or the containers won't run. Application will be deployed on address `http://localhost:8080/agario`.
+* Ensure port `8080` is free or the containers won't run. Application will be deployed on address `http://localhost:8080/agario`.
 
 This setup is recommended if you intend to just test and play around with game.
 
 * **Running manually without Docker**
 
-To setup environment, simply clone this repository and open the project in your preferred IDE with integration of your preferred web container (Apache Tomcat 8.5 was used for initial development).
+* To setup environment, simply clone this repository and open the project in your preferred IDE with integration of your preferred web container (Apache Tomcat 8.5 was used for initial development).
 
-Install Maven dependencies, ensure MySQL is running, and edit the MySQL connection string in [src/main/java/com/agario/dao/DAO.java][14] (could have probably used `dotenv` to make things easier, but oh well...).
+* Install Maven dependencies, ensure MySQL is running, and edit the MySQL connection string in [src/main/java/com/agario/dao/DAO.java][14] (could have probably used `dotenv` to make things easier, but oh well...).
 
 This setup is recommended if you want to develop on this game.
 
