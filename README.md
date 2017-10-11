@@ -104,7 +104,9 @@ Since Docker config used is based on linux containers, windows users will have t
 
 Go to project directory and run `vagrant up` in terminal.
 
-This will setup Vagrant and docker containers and deploy application on address `http://localhost:8080` (if port `8080` is already in use, some other port will be used. The new port will be listed in Vagrant output).
+This will setup Vagrant and docker containers and deploy application on address `http://localhost:8080/agario` (if port `8080` is already in use, some other port will be used. The new port will be listed in Vagrant output).
+
+If for some reason, docker containers do not build, you can ssh into VM using `vagrant ssh` and then use the command `cd /vagrant && docker-compose up -d` to try building again.
 
 **On Linux**
 
@@ -112,7 +114,7 @@ Download and install docker and docker-compose.
 
 Go to project directory and run `docker-compose up -d`.
 
-Ensure port `8080` is free or the containers won't run. Application will be deployed on address `http://localhost:8080`.
+Ensure port `8080` is free or the containers won't run. Application will be deployed on address `http://localhost:8080/agario`.
 
 This setup is recommended if you intend to just test and play around with game.
 

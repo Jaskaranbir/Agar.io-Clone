@@ -1,7 +1,7 @@
 FROM tomcat:8.5.23-jre8-alpine
 LABEL maintainer Jaskaranbir Dhillon
 
-COPY run_tomcat.sh ./
+COPY scripts/run_tomcat.sh ./
 RUN chmod +x ./run_tomcat.sh
 
 CMD ./run_tomcat.sh

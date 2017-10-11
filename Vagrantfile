@@ -44,5 +44,6 @@ Vagrant.configure(2) do |config|
     agariovm.vm.provision "docker"
     agariovm.vm.provision :docker
     agariovm.vm.provision :docker_compose, compose_version: "1.15.0", project_name: "Agario", yml: ["/vagrant/docker-compose.yml"], rebuild: true, run: "always"
+    agariovm.vm.provision "shell", path: "scripts/deploy_wait_message.sh", run: "always", privileged: false
   end
 end
