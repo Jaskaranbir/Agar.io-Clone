@@ -11,7 +11,7 @@ do
   echo "Waiting for project deployment pipeline to complete..."
   echo "---------------------------------------------------------"
 
-  sleep 1
+  sleep 5
   get_deploy_status
 done
 
