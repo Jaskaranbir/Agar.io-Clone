@@ -2,15 +2,27 @@
 
 A simple Agar.io clone developed using WebSocket and HTML on java.
 
+---
+
+**Index:**
+
+ * [Game Attributes][1]
+ * [Additional Game Attributes][2]
+ * [Gameplay][3]
+ * [TODO][4]
+ * [Developing / Development-Environment][5]
+ * [FAQs][6]
+ * [License][7]
+
 --------------
 
-[![][4]][4]
+[![][8]][8]
 
-[![][5]][5]
+[![][9]][9]
 
-[![][6]][6]
+[![][10]][10]
 
-[![][7]][7]
+[![][11]][11]
 
 --------------
 
@@ -44,7 +56,7 @@ A simple Agar.io clone developed using WebSocket and HTML on java.
 
 * To accommodate varying device performances, **game scales** according to internally detected FPS by device to maintain consistency across cross-device gameplay.
 
-* Server works in a "lazy" way; ie, it only **sends messages when a change occurs**. For instance, there are not chat or leaderboard or any enemy (except positions and score) or food updates sent unless there is a change in respective attributes. Also, the server sends only the changelog once. New players connected in between game receive updated game due to persistent data on servers (also updated along with changelogs).
+* Server works in a "lazy" way; ie, it only **sends messages when a change occurs**. For instance, no chat, leaderboard, enemy (except positions and score) or food updates are sent unless there is a change in respective attributes. Also, the server sends only the changelog once. New players connected in between game receive updated game due to temporarily-persistent game state on servers (also updated along with changelogs).
 
 --------------
 
@@ -82,7 +94,39 @@ A simple Agar.io clone developed using WebSocket and HTML on java.
 
 Considering this as a college project, the aim was to make deployment easier (hence implementation of React framework without Node.js). Further, being built using maven allows for easier dependency resolution.
 
+There are two methods to setup the environment for running this game.
+
+* ###Using Docker###
+
+###On Windows###
+
+Download and install [Vagrant][12] and [Virtualbox][13].
+
+Go to project directory and run `vagrant up` in terminal.
+
+This will setup Vagrant and docker containers and deploy application on address `http://localhost:8080` (if port `8080` is already in use, some other port will be used. The new port will be listed in Vagrant output).
+
+###On Linux##
+
+Download and install docker and docker-compose.
+
+Go to project directory and run `docker-compose up -d`.
+
+Ensure port `8080` is free or the containers won't run. Application will be deployed on address `http://localhost:8080`.
+
+This setup is recommended if you intend to just test and play around with game.
+
+* ###Running manually without Docker###
+
 To setup environment, simply clone this repository and open the project in your preferred IDE with integration of your preferred web container (Apache Tomcat 8.5 was used for initial development).
+
+Install Maven dependencies, ensure MySQL is running, and edit the MySQL connection string in [src/main/java/com/agario/dao/DAO.java][14] (could have probably used `dotenv` to make things easier, but oh well...).
+
+This setup is recommended if you want to develop on this game.
+
+
+----------
+
 
 --------------
 
@@ -90,7 +134,7 @@ To setup environment, simply clone this repository and open the project in your 
 
 * **What's "Agar.io"?**
 
-Visit [agar.io][1] and check for yourself!
+Visit [agar.io][15] and check for yourself!
 
 * **Why create this game?**
 
@@ -110,11 +154,11 @@ Yes of course! Any contribution (including bug reporting) is highly appreciated 
 
 * **How do I contribute?**
 
-Simply create a [Pull Request][2]. I will approve your changes and commit them if relevant. And of course, add you as contributor in a crerdits section (to be created).
+Simply create a [Pull Request][16]. I will approve your changes and commit them if relevant. And of course, add you as contributor in a crerdits section (to be created).
 
 * **Where can I report bugs/queries?**
 
-Go to [Issues][3] and create a new issue.
+Go to [Issues][17] and create a new issue.
 
 * **Any existing bugs?**
 
@@ -126,16 +170,26 @@ No bugs were found during testing.
 
 This project is licensed under the terms of the **MIT** license.
 
-The complete license can be read [here][8].
+The complete license can be read [here][18].
 
 For educational purposes.
 
 
-  [1]: http://agar.io
-  [2]: https://help.github.com/articles/creating-a-pull-request/
-  [3]: https://github.com/Jaskaranbir/Agar.io-Clone/issues
-  [4]: https://i.stack.imgur.com/mPYb9.png
-  [5]: https://i.stack.imgur.com/lYoxY.png
-  [6]: https://i.stack.imgur.com/hpuKV.png
-  [7]: https://i.stack.imgur.com/pQyEx.png
-  [8]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/LICENSE
+  [1]: https://github.com/Jaskaranbir/Agar.io-Clone#game-attributes
+  [2]: https://github.com/Jaskaranbir/Agar.io-Clone#additional-game-attributes
+  [3]: https://github.com/Jaskaranbir/Agar.io-Clone#gameplay
+  [4]: https://github.com/Jaskaranbir/Agar.io-Clone#todo
+  [5]: https://github.com/Jaskaranbir/Agar.io-Clone#development-environment
+  [6]: https://github.com/Jaskaranbir/Agar.io-Clone#faqs
+  [7]: https://github.com/Jaskaranbir/Agar.io-Clone#license
+  [8]: https://i.stack.imgur.com/mPYb9.png
+  [9]: https://i.stack.imgur.com/lYoxY.png
+  [10]: https://i.stack.imgur.com/hpuKV.png
+  [11]: https://i.stack.imgur.com/pQyEx.png
+  [12]: https://www.vagrantup.com/
+  [13]: https://www.virtualbox.org/
+  [14]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/src/main/java/com/agario/dao/DAO.java#L16
+  [15]: http://agar.io
+  [16]: https://help.github.com/articles/creating-a-pull-request/
+  [17]: https://github.com/Jaskaranbir/Agar.io-Clone/issues
+  [18]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/LICENSE

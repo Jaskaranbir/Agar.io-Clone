@@ -1,0 +1,11 @@
+.history
+.settings
+.vscode
+
+.vagrant
+
+.project
+.classpath
+
+bin
+target

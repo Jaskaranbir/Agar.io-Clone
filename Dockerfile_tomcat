@@ -1,0 +1,6 @@
+FROM tomcat:8.5.23-jre8-alpine
+LABEL maintainer Jaskaranbir Dhillon
+
+# Do not change name for final file, or the game won't wprk.
+# This is because that would also change the internally used URL of game.
+COPY target/agario-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/agario.war

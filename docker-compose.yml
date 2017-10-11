@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  maven:
+    # container_name: agar_maven
+    image: maven:3.5-jdk-8-alpine
+    volumes:
+      - .:/opt/maven
+    working_dir: /opt/maven
+    command: ['mvn', 'clean', 'install']
+
+  mysql:
+    # container_name: agar_mysql
+    image: mysql:5.7.19
+    environment:
+      # If you change here, make sure to also change in:
+      # src/main/java/com/agario/dao/DAO.java
+      # and below under tomcat service
+      - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - sql-datavolume:/var/lib/mysql
+
+  tomcat:
+    build:
+      context: .
+      dockerfile: Dockerfile_tomcat
+    # container_name: agar_tomcat
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASS=1234
+    image: agar_tomcat_image
+    links:
+      - maven
+      - mysql
+    ports:
+      - 8080:8080
+
+volumes:
+  sql-datavolume:
