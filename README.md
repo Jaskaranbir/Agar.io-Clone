@@ -96,17 +96,17 @@ Considering this as a college project, the aim was to make deployment easier (he
 
 There are two methods to setup the environment for running this game.
 
-* ###Using Docker###
+* **Using Docker**
 
-###On Windows###
+**On Windows**
 
-Download and install [Vagrant][12] and [Virtualbox][13].
+Since Docker config used is based on linux containers, windows users will have to run it inside a VM. So, download and install [Vagrant][12] and [Virtualbox][13].
 
 Go to project directory and run `vagrant up` in terminal.
 
 This will setup Vagrant and docker containers and deploy application on address `http://localhost:8080` (if port `8080` is already in use, some other port will be used. The new port will be listed in Vagrant output).
 
-###On Linux##
+**On Linux**
 
 Download and install docker and docker-compose.
 
@@ -116,7 +116,7 @@ Ensure port `8080` is free or the containers won't run. Application will be depl
 
 This setup is recommended if you intend to just test and play around with game.
 
-* ###Running manually without Docker###
+* **Running manually without Docker**
 
 To setup environment, simply clone this repository and open the project in your preferred IDE with integration of your preferred web container (Apache Tomcat 8.5 was used for initial development).
 
