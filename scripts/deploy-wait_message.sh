@@ -8,18 +8,20 @@ function get_deploy_status() {
   res=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/agario)
 }
 
-tries=20
+max_attempts=40
+
+cur_attempts=0
 get_deploy_status
-while (( res != 200 && res != 302 && --tries != 0))
+while (( res != 200 && res != 302 && ++cur_attempts != max_attempts))
 do
-  echo "==> Waiting for project deployment pipeline (attempt: $((20 - $tries)) of 20)."
+  echo "==> Waiting for project deployment pipeline (attempt: $cur_attempts of $max_attempts)."
   sleep 2
   get_deploy_status
 done
 
 echo
 
-if (( tries == 0 )); then
+if (( cur_attempts == max_attempts )); then
   for cntnr in $(docker ps -q)
   do
     cntnrInfo=$(docker ps -f "id=$cntnr" --format "---Container: "{{.Names}}\t" and ---Image: "{{.Image}})
@@ -45,13 +47,11 @@ if (( tries == 0 )); then
   echo "or"
   echo -e "docker-compose up -d\n"
 
-  echo "NOTE: Docker and source files are mounted at '/vagrant'. So you will need to cd into that first."
+  echo -e "NOTE: Docker and source files are mounted at '/vagrant'. So you will need to cd into that first.\n"
+
+  exit 1
 else
   echo "---------------------------------------------------------"
   echo "Project Deployment Complete!"
-  echo
-  echo "Agar.io Clone - Developed by Jaskaranbir"
-  echo
-  echo "https://github.com/Jaskaranbir/Agar.io-Clone"
   echo "---------------------------------------------------------"
 fi

@@ -2,27 +2,35 @@
 
 A simple Agar.io clone developed using WebSocket and HTML on java.
 
+### Live Demo
+
+The game is deployed on free subscription (as Web App) on Azure. Hence the resources available are very limited. It might take a few seconds for the application webpage to load initially since the VM goes to "suspend" mode after a while of inactivity, and has to be started again.
+
+Additionally, daily CPU time is limited to 60 minutes. [*Here*][1] are more details regarding free limitations and other variants.
+
+Finally, [**here**][2] is the live demo! (Can be played by multiple clients for multiplayer experience).
+
 ---
 
 **Index:**
 
- * [Game Attributes][1]
- * [Additional Game Attributes][2]
- * [Gameplay][3]
- * [TODO][4]
- * [Developing / Development-Environment][5]
- * [FAQs][6]
- * [License][7]
+ * [Game Attributes][3]
+ * [Additional Game Attributes][4]
+ * [Gameplay][5]
+ * [TODO][6]
+ * [Developing / Development-Environment][7]
+ * [FAQs][8]
+ * [License][9]
 
 --------------
 
-[![][8]][8]
+[![Splash Menu][10]][10]
 
-[![][9]][9]
+[![Gameplay Stage][11]][11]
 
-[![][10]][10]
+[![Multiplayer Demo][12]][12]
 
-[![][11]][11]
+[![Game Over][13]][13]
 
 --------------
 
@@ -30,7 +38,7 @@ A simple Agar.io clone developed using WebSocket and HTML on java.
 
 * The stage size comprises of **14143 x 14143** pixels. Although at a given time, only elements that can fit into one screen (player viewport) are rendered.
 
-* Player moves using mouse.
+* Player moves using the mouse.
 
 * Player needs 3 points more than enemy to consume it.
 
@@ -42,7 +50,7 @@ A simple Agar.io clone developed using WebSocket and HTML on java.
 
 ## Additional Game Attributes
 
-* Game sends updates to server every **32 milliseconds**. For other clients, position is extrapolated for those frames without updates and interpolated upon receiving the update.
+* Game sends updates to server every **32 milliseconds**. For other clients, the position is extrapolated for those frames without updates and interpolated upon receiving the update.
 
 * Stage will **scale automatically** according to player's size in an attempt to accommodate it within screen limits.
 
@@ -50,7 +58,7 @@ A simple Agar.io clone developed using WebSocket and HTML on java.
 
 * General Agar.io rules apply, like slowing down of player as it gains more mass.
 
-* The server, designed using **Apache Tomcat 8.5** container, sends update messages using only **single thread**, since at the time, writing concurrently is not possible and leads to exceptions.
+* The server, designed using **Apache Tomcat 8.5** container, sends update messages using only **single thread** since at the time, writing concurrently involved using complex and out-of-use-case APIs (and time-constraints did not allow for that. This may/may not be fixed in future), and leads to exceptions.
 
 * Javascript has been kept to ES5 according to the projects requirements.
 
@@ -68,7 +76,7 @@ A simple Agar.io clone developed using WebSocket and HTML on java.
 
 * Most logic runs on client side disregarding facts of cheating to squeeze server performance.
 
-* Score is used to calculate players' radii and other game dynamimcs (such as if a player can consume other). Unlike original game, this game does not have concept of mass.
+* Score is used to calculate players' radii and other game dynamics (such as if a player can consume other). Unlike original game, this game does not have concept of mass.
 
 * Player velocity slows as more score is attained (similar to original game).
 
@@ -92,7 +100,7 @@ A simple Agar.io clone developed using WebSocket and HTML on java.
 
 ## Development Environment
 
-Considering this as a college project, the aim was to make deployment easier (hence implementation of React framework without Node.js). Further, being built using maven allows for easier dependency resolution.
+Considering this as a college project, the aim was to make deployment easier (hence the implementation of React framework without Node.js). Further, being built using maven allows for easier dependency resolution.
 
 There are two methods to setup the environment for running this game.
 
@@ -100,13 +108,15 @@ There are two methods to setup the environment for running this game.
 
 **On Windows**
 
-* Since Docker config used is based on linux containers, windows users will have to run it inside a VM. So, download and install [Vagrant][12] and [Virtualbox][13].
+* Since Docker config used is based on linux containers, windows users will have to run it inside a VM. So, download and install [Vagrant][14] and [Virtualbox][15].
 
 * Go to project directory and run `vagrant up` in terminal.
 
-* This will setup Vagrant and docker containers and deploy application on address `http://localhost:8080/agario` (if port `8080` is already in use, some other port will be used. The new port will be listed in Vagrant output).
+* This will setup Vagrant and docker containers and deploy application on address `http://localhost:<PORT>/agario` (where `<PORT>` corresponds to a valid open port chosen by Vagrant).
 
-* If for some reason, docker containers do not build, you can ssh into VM using `vagrant ssh` and then use the command `cd /vagrant && docker-compose up -d` to try building again.
+* *You will get the exact web-address which you can enter in your browser to run the game (once the script finishes successfully)*.
+
+* If for some reason, docker containers do not build, you can ssh into VM using `vagrant ssh` and then use the command `docker rm $(docker ps -aq) && docker-compose up -d` to try building again.
 
 **On Linux**
 
@@ -114,29 +124,27 @@ There are two methods to setup the environment for running this game.
 
 * Go to project directory and run `docker-compose up -d`.
 
-* Ensure port `8080` is free or the containers won't run. Application will be deployed on address `http://localhost:8080/agario`.
+* Ensure port `8080` is free or the containers won't run (unless configured to specifically use another port). Application will be deployed on address `http://localhost:8080/agario`.
 
-This setup is recommended if you intend to just test and play around with game.
+**NOTE**: You can also setup Vagrant in Linux and use the same procedure as provided for Windows.
+
+This setup is recommended if you intend to just test and play around with the game.
 
 * **Running manually without Docker**
 
 * To setup environment, simply clone this repository and open the project in your preferred IDE with integration of your preferred web container (Apache Tomcat 8.5 was used for initial development).
 
-* Install Maven dependencies, ensure MySQL is running, and edit the MySQL connection string in [src/main/java/com/agario/dao/DAO.java][14] (could have probably used `dotenv` to make things easier, but oh well...).
+* Install Maven dependencies, ensure MySQL is running, and edit the MySQL connection string in [src/main/java/com/agario/dao/DAO.java][16] (could have probably used `dotenv` to make things easier, but oh well...).
 
 This setup is recommended if you want to develop on this game.
 
-
 ----------
-
-
---------------
 
 ## FAQs
 
 * **What's "Agar.io"?**
 
-Visit [agar.io][15] and check for yourself!
+Visit [agar.io][17] and check for yourself!
 
 * **Why create this game?**
 
@@ -156,11 +164,11 @@ Yes of course! Any contribution (including bug reporting) is highly appreciated 
 
 * **How do I contribute?**
 
-Simply create a [Pull Request][16]. I will approve your changes and commit them if relevant. And of course, add you as contributor in a crerdits section (to be created).
+Simply create a [Pull Request][18]. I will approve your changes and commit them if relevant. And of course, add you as contributor in a credits section (to be created).
 
 * **Where can I report bugs/queries?**
 
-Go to [Issues][17] and create a new issue.
+Go to [Issues][19] and create a new issue.
 
 * **Any existing bugs?**
 
@@ -172,26 +180,28 @@ No bugs were found during testing.
 
 This project is licensed under the terms of the **MIT** license.
 
-The complete license can be read [here][18].
+The complete license can be read [here][20].
 
 For educational purposes.
 
 
-  [1]: https://github.com/Jaskaranbir/Agar.io-Clone#game-attributes
-  [2]: https://github.com/Jaskaranbir/Agar.io-Clone#additional-game-attributes
-  [3]: https://github.com/Jaskaranbir/Agar.io-Clone#gameplay
-  [4]: https://github.com/Jaskaranbir/Agar.io-Clone#todo
-  [5]: https://github.com/Jaskaranbir/Agar.io-Clone#development-environment
-  [6]: https://github.com/Jaskaranbir/Agar.io-Clone#faqs
-  [7]: https://github.com/Jaskaranbir/Agar.io-Clone#license
-  [8]: https://i.stack.imgur.com/mPYb9.png
-  [9]: https://i.stack.imgur.com/lYoxY.png
-  [10]: https://i.stack.imgur.com/hpuKV.png
-  [11]: https://i.stack.imgur.com/pQyEx.png
-  [12]: https://www.vagrantup.com/
-  [13]: https://www.virtualbox.org/
-  [14]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/src/main/java/com/agario/dao/DAO.java#L16
-  [15]: http://agar.io
-  [16]: https://help.github.com/articles/creating-a-pull-request/
-  [17]: https://github.com/Jaskaranbir/Agar.io-Clone/issues
-  [18]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/LICENSE
+  [1]: https://blog.siliconvalve.com/2016/05/12/understanding-azure-app-service-plans-and-pricing/
+  [2]: http://jas-java-proj-1.azurewebsites.net/agario/
+  [3]: https://github.com/Jaskaranbir/Agar.io-Clone#game-attributes
+  [4]: https://github.com/Jaskaranbir/Agar.io-Clone#additional-game-attributes
+  [5]: https://github.com/Jaskaranbir/Agar.io-Clone#gameplay
+  [6]: https://github.com/Jaskaranbir/Agar.io-Clone#todo
+  [7]: https://github.com/Jaskaranbir/Agar.io-Clone#development-environment
+  [8]: https://github.com/Jaskaranbir/Agar.io-Clone#faqs
+  [9]: https://github.com/Jaskaranbir/Agar.io-Clone#license
+  [10]: https://i.stack.imgur.com/mPYb9.png
+  [11]: https://i.stack.imgur.com/lYoxY.png
+  [12]: https://i.stack.imgur.com/hpuKV.png
+  [13]: https://i.stack.imgur.com/pQyEx.png
+  [14]: https://www.vagrantup.com/
+  [15]: https://www.virtualbox.org/
+  [16]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/src/main/java/com/agario/dao/DAO.java#L16
+  [17]: http://agar.io
+  [18]: https://help.github.com/articles/creating-a-pull-request/
+  [19]: https://github.com/Jaskaranbir/Agar.io-Clone/issues
+  [20]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/LICENSE

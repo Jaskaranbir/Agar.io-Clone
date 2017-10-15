@@ -7,7 +7,9 @@ cache:
 
 script: mvn clean install
 
-after_success: ./scripts/travis-after_install.sh
+after_success:
+  - chmod +x ./scripts/travis-after_install.sh
+  - source ./scripts/travis-after_install.sh
 
 branches:
   only:
