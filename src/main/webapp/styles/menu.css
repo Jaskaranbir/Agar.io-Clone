@@ -50,19 +50,18 @@ body {
     font-size: 1em;
 }
 
-.m-sub-title-name {
+.m-sub-text {
     padding-bottom: 1px;
     border-bottom: 1px solid #212121;
 }
 
-.m-sub-title-name a {
+a {
     text-decoration: none;
     color: #212121;
 }
 
 .m-alias-form-fade {
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
+    filter: blur(4px);
 }
 
 .m-form-element {
@@ -110,8 +109,13 @@ body {
     background-color: #eea236;
 }
 
-#m-instructions {
+.m-instructions {
     margin-top: 20px;
+}
+
+.red-bold {
+    color: #c33;
+    font-weight: bold;
 }
 
 #m-instructions-table {
@@ -156,21 +160,8 @@ body {
 }
 
 .show-m-leaderboard {
-    -webkit-animation: m-leaderboard-fadein-top 300ms;
-            animation: m-leaderboard-fadein-top 300ms;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes m-leaderboard-fadein-top {
-    from {
-        top: 48%;
-        opacity: 0;
-    }
-    to {
-        top: 50%;
-        opacity: 1;
-    }
+    animation: m-leaderboard-fadein-top 300ms;
+    animation-fill-mode: forwards;
 }
 
 @keyframes m-leaderboard-fadein-top {
@@ -258,6 +249,10 @@ body {
     text-align: center;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
     border-right: 1px solid #C1C3D1;
+}
+
+.m-menu-footer {
+    margin-top: 10px;
 }
 
 #m-game-load-text {

@@ -8,16 +8,20 @@ var PerfMonitor = (function (warningDOMElement) {
 
     var opStartTime;
     var opEndTime;
-    
+
     (function () {
         opStartTime = Date.now();
     })();
 
     var updatePerfCounter = function () {
-        if (curFPS < 30) {
-            isPerfWarningVisible = true;
-            warningDOMElement.className = 'g-warning-visible';
-        } else if (isPerfWarningVisible)
+        if (curFPS < 30 && !isPerfWarningVisible)
+            setTimeout(function () {
+                if (curFPS < 30) {
+                    isPerfWarningVisible = true;
+                    warningDOMElement.className = 'g-warning-visible';
+                }
+            }, 2000);
+        else
             setTimeout(function () {
                 if (curFPS > 35) {
                     warningDOMElement.className = '';

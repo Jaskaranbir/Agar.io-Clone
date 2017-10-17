@@ -1,13 +1,23 @@
 version: '3'
 
 services:
-  maven:
-    # container_name: agar_maven
-    image: maven:3.5-jdk-8-alpine
+  maven-tomcat:
+    build:
+      context: .
+      dockerfile: scripts/Dockerfile-maven_tomcat
+    # container_name: agar_maven-tomcat
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASS=1234
+    image: agar_maven-tomcat_img
+    links:
+      - mysql
+    ports:
+      - 8080:8080
     volumes:
-      - .:/opt/maven
-    working_dir: /opt/maven
-    command: ['mvn', 'clean', 'install']
+      - .:/src
 
   mysql:
     # container_name: agar_mysql
@@ -19,25 +29,6 @@ services:
       - MYSQL_ROOT_PASSWORD=1234
     volumes:
       - sql-datavolume:/var/lib/mysql
-
-  tomcat:
-    build:
-      context: .
-      dockerfile: Dockerfile_tomcat
-    # container_name: agar_tomcat
-    environment:
-      - MYSQL_HOST=mysql
-      - MYSQL_PORT=3306
-      - MYSQL_USER=root
-      - MYSQL_PASS=1234
-    image: agar_tomcat_img
-    links:
-      - maven
-      - mysql
-    ports:
-      - 8080:8080
-    volumes:
-      - .:/src
 
 volumes:
   sql-datavolume:

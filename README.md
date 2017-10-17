@@ -58,7 +58,7 @@ Finally, [**here**][2] is the live demo! (Can be played by multiple clients for 
 
 * General Agar.io rules apply, like slowing down of player as it gains more mass.
 
-* The server, designed using **Apache Tomcat 8.5** container, sends update messages using only **single thread** since at the time, writing concurrently involved using complex and out-of-use-case APIs (and time-constraints did not allow for that. This may/may not be fixed in future), and leads to exceptions.
+* The server, designed using **Apache Tomcat 8.5** container, sends update messages using only **single thread** since at the time, writing concurrently involved using complex and out-of-use-case APIs (and time-constraints did not allow for that. This may/may not be fixed in future), and lead to exceptions.
 
 * Javascript has been kept to ES5 according to the projects requirements.
 
@@ -128,7 +128,7 @@ There are two methods to setup the environment for running this game.
 
 **NOTE**: You can also setup Vagrant in Linux and use the same procedure as provided for Windows.
 
-This setup is recommended if you intend to just test and play around with the game.
+This setup is recommended if you intend to just test and play around with the game. This will **entirely** rebuild the project everytime the images are built (including downloading Maven dependencies). Hence manual setup (provided below) is recommended for manual development.
 
 * **Running manually without Docker**
 
@@ -153,6 +153,10 @@ As my java project for the college term, having the freedom to create program of
 * **Why use MySQL, JSTL/JSP?**
 
 They were part of requirements for my project. Modular structure allows for easy replacement/removal when required.
+
+* **Why not use JSON for sending messages?**
+
+The idea was to keep bandwidth usage minimal (while using simpler methods because of time constraints). Hence no JSON. Compression wasn't used to keep performance optimal.
 
 * **Can I use the code from this game in my projects?**
 
