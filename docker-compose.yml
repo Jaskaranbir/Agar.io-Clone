@@ -1,17 +1,15 @@
 version: '3'
 
 services:
-  maven-tomcat:
-    build:
-      context: .
-      dockerfile: scripts/Dockerfile-maven_tomcat
-    # container_name: agar_maven-tomcat
+  build-deploy:
+    build: .
+    # container_name: agar_build_deploy
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
       - MYSQL_USER=root
       - MYSQL_PASS=1234
-    image: agar_maven-tomcat_img
+    image: agar_build-deploy_img
     links:
       - mysql
     ports:

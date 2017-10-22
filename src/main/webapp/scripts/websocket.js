@@ -5,11 +5,11 @@ var Socket = (function (stage, playerAlias) {
     var player;
     var enemies;
     var foods;
-    
+
     var gameloop;
     var chatHandler;
     var leaderboard;
-    
+
     var webSocket;
 
     var props = {
@@ -79,12 +79,12 @@ var Socket = (function (stage, playerAlias) {
         leaderboard = new Leaderboard(player, enemies);
         chatHandler = new ChatHandler();
 
-
-        enableGameKeyEvents();
         elements.menuContainer.className = 'remove-m-element';
         elements.scoreContainer.className = 'show-load-text no-user-select';
         elements.leaderboardContainer.className = 'show-load-text no-user-select';
+
         player.props.isDisconnected = false;
+        controls.isPlayerInitialized = true;
         webSocket.send('L0');
         sendData();
         requestAnimationFrame(gameloop.update);

@@ -47,7 +47,9 @@ if (( cur_attempts == max_attempts )); then
   echo "or"
   echo -e "docker-compose up -d\n"
 
-  echo -e "NOTE: Docker and source files are mounted at '/vagrant'. So you will need to cd into that first.\n"
+  echo -e "NOTE: Docker and source files are mounted at '/vagrant'. So you will need to cd into that first.\n\n\n"
+
+  echo "You might need to press Ctrl+C to exit."
 
   exit 1
 else

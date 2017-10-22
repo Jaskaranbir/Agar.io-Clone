@@ -4,6 +4,7 @@ sudo: false
 cache:
  directories:
    - $HOME/.m2
+   - node_modules
 
 script: mvn clean install
 

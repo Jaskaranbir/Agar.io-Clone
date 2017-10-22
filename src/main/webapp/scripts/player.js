@@ -54,12 +54,12 @@ var Player = (function (playerProps, canvasProps, canvasContext) {
             props.xPos = newXPos;
         else
             props.xVel = 0;
-        
+
         if (newYPos > 0 && newYPos < 14143)
             props.yPos = newYPos;
         else
             props.yVel = 0;
-            
+
         // These need to be calculated every time
         // To cover cases like player trying to go out of bounds while resizing screen
         props.centerXDist = cp.screenCenterX - (props.xPos * cp.finalScale);
@@ -93,13 +93,15 @@ var Player = (function (playerProps, canvasProps, canvasContext) {
         ctx.strokeStyle = '#000000';
         ctx.strokeText(alias, cp.screenCenterX - (aliasWidth), cp.screenCenterY);
 
-        ctx.font = "bold 23px Roboto";
         var score = props.score;
+
+        ctx.font = "bold 23px Roboto";
         var scoreWidth = ctx.measureText(score).width / 2;
         ctx.fillStyle = '#FFFFFF';
         ctx.fillText(score, cp.screenCenterX - (scoreWidth), cp.screenCenterY + 27);
         ctx.strokeStyle = '#000000';
         ctx.strokeText(score, cp.screenCenterX - (scoreWidth), cp.screenCenterY + 27);
+        elements.scoreContainer.innerText = 'XP: ' + score;
     };
 
     var drawColorChangeEffect = function (ctx, cp, radiusScaled) {
@@ -130,7 +132,7 @@ var Player = (function (playerProps, canvasProps, canvasContext) {
             props.color_border = "hsl(" + hue + ", " + saturation + "%, " + (props.lumination - 20) + "%)";
         }
     };
-    
+
     var consumeFood = function (foodHue, foodSaturation, velScaleFactor) {
         props.radiusIncCounter += 0.102;
         if (props.radiusIncCounter > 1) {
@@ -141,20 +143,20 @@ var Player = (function (playerProps, canvasProps, canvasContext) {
         switchColor(foodHue, foodSaturation);
         scaleVel(velScaleFactor);
     };
-    
+
     var consumeEnemy = function (statsDelta, velScaleFactor) {
         props.score += statsDelta;
         props.radius += Math.ceil(statsDelta * 0.102);
         props.colorSwitchEffectRadius = (props.radius * canvasProps.finalScale) + 26;
-        
+
         scaleVel(velScaleFactor);
     };
-    
+
     var scaleVel = function (factor) {
         if(props.baseVel > 0.1)
             props.baseVel -= (0.05 * factor);
     };
-    
+
     var setLost = function () {
         props.isLost = true;
         props.isDisconnected = true;

@@ -50,12 +50,12 @@ elements.playButton.addEventListener('click', function () {
         elements.aliasFieldLabel.textContent = 'Alias too long.';
         elements.aliasFieldLabel.className = 'red-text';
         elements.aliasFieldLabel.focus();
-    } else if (pName.includes('^')) {
+    }
+    else if (pName.includes('^')) {
         elements.aliasFieldLabel.textContent = 'Alias cannot include character "^".';
         elements.aliasFieldLabel.className = 'red-text';
         elements.aliasFieldLabel.focus();
-    } 
-    
+    }
     else {
         controls.socket = new Socket(entities.stage, pName);
         controls.socket.configSocket();
@@ -104,12 +104,8 @@ elements.closeLboardButton.addEventListener('click', function () {
 
 });
 
-//=========== In-Game Key Events ========
-// These are initialized after player login
-// Check websocket
-
-function enableGameKeyEvents() {
-    document.addEventListener("keydown", function (e) {
+ document.addEventListener("keydown", function (e) {
+    if (controls.isPlayerInitialized) {
         var playerProps = entities.player.props;
         var canvasProps = entities.stage.props;
         var chatField = elements.chatField;
@@ -119,21 +115,24 @@ function enableGameKeyEvents() {
             playerProps.isColorSwitchMode = !playerProps.isColorSwitchMode;
             if (playerProps.isColorSwitchMode)
                 playerProps.colorSwitchEffectRadius = playerProps.radius * canvasProps.finalScale;
+        }
 
-        } else if (e.code === "KeyT" && !playerProps.isDisconnected) {
-
+        else if (e.code === "KeyT" && !playerProps.isDisconnected) {
             if (!controls.isChatBoxVisible) {
                 elements.chatBox.className = '';
                 controls.isChatBoxVisible = true;
                 setTimeout(function () {
                     chatField.focus();
                 }, 400);
-            } else
+            }
+            else
                 chatField.focus();
 
             if (!chatFieldSelected)
                 e.preventDefault();
-        } else if (e.code === "Escape" && chatFieldSelected)
+        }
+
+        else if (e.code === "Escape" && chatFieldSelected)
             chatField.blur();
 
         else if (chatFieldSelected && e.code === "Enter") {
@@ -143,7 +142,7 @@ function enableGameKeyEvents() {
 
         if (!chatFieldSelected && e.code === "KeyQ") {
             elements.chatBox.className = controls.isChatBoxVisible ? 'g-chat-box-hidden' : '';
-            controls.isChatBoxVisible = !controls.isChatBoxVisible;
+        controls.isChatBoxVisible = !controls.isChatBoxVisible;
         }
-    });
-}
+    }
+});

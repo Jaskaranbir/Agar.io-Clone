@@ -51,8 +51,7 @@
     width: 80%;
     left: 50%;
     bottom: 40px;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
     padding: 4px 2px 6px 2px;
     font-size: 2em;
     border-radius: 8px;
@@ -61,7 +60,6 @@
     text-align: center;
     z-index: 2;
     opacity: 0;
-    -webkit-transition: opacity 2s;
     transition: opacity 2s;
     cursor: default;
 }
@@ -78,7 +76,6 @@
     height: 400px;
     color: black;
     opacity: 1;
-    -webkit-transition: bottom 400ms, opacity 300ms;
     transition: bottom 400ms, opacity 300ms;
 }
 
@@ -117,7 +114,6 @@
     outline: none;
     background-color: transparent;
     color: white;
-    -webkit-transition: background-color 450ms, width 200ms;
     transition: background-color 450ms, width 200ms;
 }
 

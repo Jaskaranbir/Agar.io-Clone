@@ -12,53 +12,137 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!--             Plugin-Version Vars Start             -->
+        
+        <frontendMavenPlugin.version>1.6</frontendMavenPlugin.version>
+        
+        <java.version>1.7</java.version>
+        <javaeeEndorsedApi.version>7.0</javaeeEndorsedApi.version>
+        <javaWebApi.version>7.0</javaWebApi.version>
+        <jstl.version>1.2</jstl.version>
+        
+        <mavenCompilerPlugin.version>3.7.0</mavenCompilerPlugin.version>
+        <mavenDependencyPlugin.version>3.0.2</mavenDependencyPlugin.version>
+        <mavenWarPlugin.version>3.2.0</mavenWarPlugin.version>
+        <mysqlConnector.version>5.1.44</mysqlConnector.version>
+        
+        <node.version>v8.7.0</node.version>
+        <npm.version>5.4.2</npm.version>
+        
+        <!--             Plugin-Version Vars End             -->
     </properties>
     
     <dependencies>
         <dependency>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>${frontendMavenPlugin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${mavenCompilerPlugin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>${mavenDependencyPlugin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>${mavenWarPlugin.version}</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
+            <version>${javaWebApi.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.37</version>
+            <version>${mysqlConnector.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <version>${jstl.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontendMavenPlugin.version}</version>
+                <configuration>
+                    <installDirectory>target</installDirectory>
+                </configuration>
+                
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>${node.version}</nodeVersion>
+                            <npmVersion>${npm.version}</npmVersion>
+                        </configuration>
+                    </execution>
+                    
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    
+                    <execution>
+                        <id>npm run build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>${mavenCompilerPlugin.version}</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
+                <version>${mavenWarPlugin.version}</version>
                 <configuration>
+                    <warSourceDirectory>${basedir}/src/main/webapp/dist</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
+                <version>${mavenDependencyPlugin.version}</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -72,7 +156,7 @@
                                 <artifactItem>
                                     <groupId>javax</groupId>
                                     <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
+                                    <version>${javaeeEndorsedApi.version}</version>
                                     <type>jar</type>
                                 </artifactItem>
                             </artifactItems>

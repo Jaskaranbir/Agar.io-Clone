@@ -1,5 +1,8 @@
 # ============== Maven Build ===============
-FROM maven:3.5-jdk-8-alpine as builder
+
+# Since node binary isn't compatible with Alpine
+# https://github.com/eirslett/frontend-maven-plugin/issues/633
+FROM maven:3.5-jdk-8-slim as builder
 LABEL maintainer Jaskaranbir Dhillon
 
 WORKDIR /opt/maven
@@ -7,8 +10,10 @@ WORKDIR /opt/maven
 # Docker Cachebust
 ADD https://www.random.org/strings/?num=1&len=8&digits=on&upperalpha=on&loweralpha=on&unique=on&format=plain&rnd=new uuid
 
-COPY pom.xml .
+COPY pom.xml package.json ./
 COPY src ./src
+COPY config ./config
+
 RUN ["mvn", "clean", "install"]
 
 # =========== Tomcat Deployment =============

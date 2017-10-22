@@ -14,20 +14,16 @@ body {
     left: 50%;
     top: 50%;
     text-align: center;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     z-index: 2;
     width: 100%;
     background-color: rgba(0,0,0,0.75);
     color: white;
     opacity: 0;
     font-family: Baloo;
-    -webkit-animation: fadein 1s;
-            animation: fadein 1s;
-    -webkit-animation-delay: 0.3s;
-            animation-delay: 0.3s;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
+    animation: fadein 1s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes fadein {

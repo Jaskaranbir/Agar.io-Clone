@@ -19,18 +19,19 @@ Finally, [**here**][2] is the live demo! (Can be played by multiple clients for 
  * [Gameplay][5]
  * [TODO][6]
  * [Developing / Development-Environment][7]
- * [FAQs][8]
- * [License][9]
+ * [Build Cycle][8]
+ * [FAQs][9]
+ * [License][10]
 
 --------------
 
-[![Splash Menu][10]][10]
+[![Splash Menu][11]][11]
 
-[![Gameplay Stage][11]][11]
+[![Gameplay Stage][12]][12]
 
-[![Multiplayer Demo][12]][12]
+[![Multiplayer Demo][13]][13]
 
-[![Game Over][13]][13]
+[![Game Over][14]][14]
 
 --------------
 
@@ -94,6 +95,8 @@ Finally, [**here**][2] is the live demo! (Can be played by multiple clients for 
 
 * Add skins.
 
+* Transform JS code to ES6
+
 * *Anything you feel relevant.*
 
 --------------
@@ -108,7 +111,7 @@ There are two methods to setup the environment for running this game.
 
 **On Windows**
 
-* Since Docker config used is based on linux containers, windows users will have to run it inside a VM. So, download and install [Vagrant][14] and [Virtualbox][15].
+* Since Docker config used is based on linux containers, windows users will have to run it inside a VM. So, download and install [Vagrant][15] and [Virtualbox][16].
 
 * Go to project directory and run `vagrant up` in terminal.
 
@@ -134,9 +137,25 @@ This setup is recommended if you intend to just test and play around with the ga
 
 * To setup environment, simply clone this repository and open the project in your preferred IDE with integration of your preferred web container (Apache Tomcat 8.5 was used for initial development).
 
-* Install Maven dependencies, ensure MySQL is running, and edit the MySQL connection string in [src/main/java/com/agario/dao/DAO.java][16] (could have probably used `dotenv` to make things easier, but oh well...).
+* Install Maven dependencies (**Maven version 3 or higher required**), ensure MySQL is running, and edit the MySQL connection string in [src/main/java/com/agario/dao/DAO.java][17] (could have probably used `dotenv` to make things easier, but oh well...).
 
 This setup is recommended if you want to develop on this game.
+
+**Side Note:** Vagrant connects with a website to get a random string to prevent Docker from caching builds (otherwise source code changes will not be recognized by Docker). If you get an error that says something like `request timedout`, and you are positive that your internet is working fine, then try restarting vagrant (`vagrant reload`) or try restarting your computer.
+
+----------
+
+## Build Cycle
+
+The project compiles mainly in 3 main cycles:
+
+ * Webpack Minification (using [maven-frontend-plugin][18])
+ * Compiling project files and packaging into `war` file (maven)
+ * Deploy to Tomcat
+
+As one the project requirements to keep the main syntax purely ES5 (and taking it as personal 'challenege' at that time to implement builds without ES6), `exports-loader` and `webpack-provide-plugin` have been used to bundle files and share required variables.
+
+The first step is Webpack bundling files to `src/main/webapp/dist`, followed by compiling java classes, and finally bundling to `war` file.
 
 ----------
 
@@ -144,7 +163,7 @@ This setup is recommended if you want to develop on this game.
 
 * **What's "Agar.io"?**
 
-Visit [agar.io][17] and check for yourself!
+Visit [agar.io][19] and check for yourself!
 
 * **Why create this game?**
 
@@ -168,11 +187,11 @@ Yes of course! Any contribution (including bug reporting) is highly appreciated 
 
 * **How do I contribute?**
 
-Simply create a [Pull Request][18]. I will approve your changes and commit them if relevant. And of course, add you as contributor in a credits section (to be created).
+Simply create a [Pull Request][20]. I will approve your changes and commit them if relevant. And of course, add you as contributor in a credits section (to be created).
 
 * **Where can I report bugs/queries?**
 
-Go to [Issues][19] and create a new issue.
+Go to [Issues][21] and create a new issue.
 
 * **Any existing bugs?**
 
@@ -184,7 +203,7 @@ No bugs were found during testing.
 
 This project is licensed under the terms of the **MIT** license.
 
-The complete license can be read [here][20].
+The complete license can be read [here][22].
 
 For educational purposes.
 
@@ -196,16 +215,18 @@ For educational purposes.
   [5]: https://github.com/Jaskaranbir/Agar.io-Clone#gameplay
   [6]: https://github.com/Jaskaranbir/Agar.io-Clone#todo
   [7]: https://github.com/Jaskaranbir/Agar.io-Clone#development-environment
-  [8]: https://github.com/Jaskaranbir/Agar.io-Clone#faqs
-  [9]: https://github.com/Jaskaranbir/Agar.io-Clone#license
-  [10]: https://i.stack.imgur.com/mPYb9.png
-  [11]: https://i.stack.imgur.com/lYoxY.png
-  [12]: https://i.stack.imgur.com/hpuKV.png
-  [13]: https://i.stack.imgur.com/pQyEx.png
-  [14]: https://www.vagrantup.com/
-  [15]: https://www.virtualbox.org/
-  [16]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/src/main/java/com/agario/dao/DAO.java#L16
-  [17]: http://agar.io
-  [18]: https://help.github.com/articles/creating-a-pull-request/
-  [19]: https://github.com/Jaskaranbir/Agar.io-Clone/issues
-  [20]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/LICENSE
+  [8]: https://github.com/Jaskaranbir/Agar.io-Clone#build-cycle
+  [9]: https://github.com/Jaskaranbir/Agar.io-Clone#faqs
+  [10]: https://github.com/Jaskaranbir/Agar.io-Clone#license
+  [11]: https://i.stack.imgur.com/mPYb9.png
+  [12]: https://i.stack.imgur.com/lYoxY.png
+  [13]: https://i.stack.imgur.com/hpuKV.png
+  [14]: https://i.stack.imgur.com/pQyEx.png
+  [15]: https://www.vagrantup.com/
+  [16]: https://www.virtualbox.org/
+  [17]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/src/main/java/com/agario/dao/DAO.java#L16
+  [18]: https://github.com/eirslett/frontend-maven-plugin
+  [19]: http://agar.io
+  [20]: https://help.github.com/articles/creating-a-pull-request/
+  [21]: https://github.com/Jaskaranbir/Agar.io-Clone/issues
+  [22]: https://github.com/Jaskaranbir/Agar.io-Clone/blob/master/LICENSE
