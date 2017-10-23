@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <!-- Directory for downloading portable node binary used by frontend-maven-plugin -->
-        <nodeInstall.dir>target</nodeInstall.dir>
+        <nodeInstall.dir>.mvn_temp</nodeInstall.dir>
         
         <!-- =========== Plugin-Version Vars Start =========== -->
         
@@ -37,26 +37,6 @@
     </properties>
     
     <dependencies>
-        <dependency>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
-            <version>${frontendMavenPlugin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>${mavenCompilerPlugin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>${mavenDependencyPlugin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>${mavenWarPlugin.version}</version>
-        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -103,7 +83,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>install</arguments>
+                            <arguments>install --no-bin-links --no-optional</arguments>
                         </configuration>
                     </execution>
                     

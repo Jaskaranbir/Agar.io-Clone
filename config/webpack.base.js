@@ -3,6 +3,8 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
+const RELATIVE_SCRIPT_PATH = '../src/main/webapp/scripts'
+
 const baseConfig = {
   module: {
     loaders: [
@@ -105,7 +107,7 @@ function generateExportLoaders(dependencies) {
     const depenStr = nameArr.reduce((outStr, e) => (outStr += `${e}=${e},`), '').slice(0, -1) // Removing last comma
 
     outObj.push({
-      test: require.resolve(`../src/main/webapp/scripts/${depen.file}`),
+      test: require.resolve(`${RELATIVE_SCRIPT_PATH}/${depen.file}`),
       loader: `exports-loader?${depenStr}`
     })
     return outObj

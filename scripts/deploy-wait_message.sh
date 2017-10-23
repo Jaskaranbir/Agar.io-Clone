@@ -8,7 +8,14 @@ function get_deploy_status() {
   res=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/agario)
 }
 
-max_attempts=40
+if [ ! -f ../.mvn_temp/node/node ]; then
+  echo "---------------------------------------------------------"
+  echo "Waiting with additional wait time to allow node setup..."
+  echo "---------------------------------------------------------"
+  max_attempts=300
+else
+  max_attempts=40
+fi
 
 cur_attempts=0
 get_deploy_status

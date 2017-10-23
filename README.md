@@ -18,7 +18,7 @@ Finally, [**here**][2] is the live demo! (Can be played by multiple clients for 
  * [Additional Game Attributes][4]
  * [Gameplay][5]
  * [TODO][6]
- * [Developing / Development-Environment][7]
+ * [Developing / Development-Environment / Running a local instance][7]
  * [Build Cycle][8]
  * [FAQs][9]
  * [License][10]
@@ -103,7 +103,7 @@ Finally, [**here**][2] is the live demo! (Can be played by multiple clients for 
 
 ## Development Environment
 
-Considering this as a college project, the aim was to make deployment easier (hence the implementation of React framework without Node.js). Further, being built using maven allows for easier dependency resolution.
+Considering this as a college project, the goal was to make deployment easier (hence the implementation of React framework without Node.js). Further, being built using maven allows for easier dependency resolution.
 
 There are two methods to setup the environment for running this game.
 
@@ -131,7 +131,7 @@ There are two methods to setup the environment for running this game.
 
 **NOTE**: You can also setup Vagrant in Linux and use the same procedure as provided for Windows.
 
-This setup is recommended if you intend to just test and play around with the game. This will **entirely** rebuild the project everytime the images are built (including downloading Maven dependencies). Hence manual setup (provided below) is recommended for manual development.
+This setup is recommended if you intend to just test and play around with the game.
 
 * **Running manually without Docker**
 
@@ -147,7 +147,7 @@ This setup is recommended if you want to develop on this game.
 
 ## Build Cycle
 
-The project compiles mainly in 3 main cycles:
+The project compiles mainly in 3 cycles:
 
  * Webpack Minification (using [maven-frontend-plugin][18])
  * Compiling project files and packaging into `war` file (maven)

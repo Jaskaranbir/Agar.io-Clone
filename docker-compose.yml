@@ -1,21 +1,21 @@
 version: '3'
 
 services:
-  build-deploy:
+  app:
     build: .
-    # container_name: agar_build_deploy
+    # container_name: agar_app
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
       - MYSQL_USER=root
       - MYSQL_PASS=1234
-    image: agar_build-deploy_img
+    image: agar_app_img
     links:
       - mysql
     ports:
       - 8080:8080
     volumes:
-      - .:/src
+      - .:/opt/maven
 
   mysql:
     # container_name: agar_mysql

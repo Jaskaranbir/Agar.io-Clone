@@ -7,7 +7,7 @@
   "description": "",
   "scripts": {
     "clean": "rimraf src/main/webapp/dist",
-    "build": "npm run clean && parallel-webpack --max-retries=3 --config config/webpack.run.js"
+    "build": "npm run clean && parallel-webpack --max-retries=3 --config config/webpack.build.js"
   },
   "repository": {
     "type": "git",
