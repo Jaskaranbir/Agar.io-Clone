@@ -13,7 +13,10 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
-        <!--             Plugin-Version Vars Start             -->
+        <!-- Directory for downloading portable node binary used by frontend-maven-plugin -->
+        <nodeInstall.dir>target</nodeInstall.dir>
+        
+        <!-- =========== Plugin-Version Vars Start =========== -->
         
         <frontendMavenPlugin.version>1.6</frontendMavenPlugin.version>
         
@@ -30,7 +33,7 @@
         <node.version>v8.7.0</node.version>
         <npm.version>5.4.2</npm.version>
         
-        <!--             Plugin-Version Vars End             -->
+        <!-- =========== Plugin-Version Vars End ============= -->
     </properties>
     
     <dependencies>
@@ -79,7 +82,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>${frontendMavenPlugin.version}</version>
                 <configuration>
-                    <installDirectory>target</installDirectory>
+                    <installDirectory>${nodeInstall.dir}</installDirectory>
                 </configuration>
                 
                 <executions>

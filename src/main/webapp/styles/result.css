@@ -26,12 +26,6 @@ body {
     animation-fill-mode: forwards;
 }
 
-@-webkit-keyframes fadein {
-    to {
-        opacity: 1;
-    }
-}
-
 @keyframes fadein {
     to {
         opacity: 1;

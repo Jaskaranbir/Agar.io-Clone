@@ -17,20 +17,6 @@
             <div id="score-text">Score: <c:out value="${score}" /></div>
             <div id='comment-text'><m:ScoreComment score="${score}" /></div>
         </div>
-
-        <script type="text/javascript" src="scripts/stage.js"></script>
-        
-        <script>
-            var canvas = document.getElementById("canvas");
-            var stage = new Stage(canvas);
-
-            window.addEventListener("resize", function () {
-                stage.resize();
-            });
-            
-            document.addEventListener("click", function () {
-                window.location.replace("index.html");
-            });
-        </script>
+        <script type="text/javascript" src="scripts/result.js"></script>
     </body>
 </html>

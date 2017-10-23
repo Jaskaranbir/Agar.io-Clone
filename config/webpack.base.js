@@ -1,20 +1,9 @@
 const webpack = require('webpack')
-const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const config = {
-  entry: {
-    app: './src/main/webapp/main'
-  },
-  output: {
-    path: __dirname + '/../src/main/webapp/dist',
-    filename: 'scripts/[name].[hash].js',
-    publicPath: ''
-  },
-
+const baseConfig = {
   module: {
     loaders: [
       {
@@ -73,65 +62,34 @@ const config = {
   },
 
   plugins: [
-    new WebpackCleanupPlugin(),
-
-    new ExtractTextPlugin("styles/[name].[contenthash].css"),
-
     new OptimizeCSSPlugin(),
 
-    new CopyWebpackPlugin(
-      [
-        { from: 'META-INF', to: 'META-INF' },
-        { from: 'WEB-INF', to: 'WEB-INF' },
-        { from: 'images', to: 'images' },
-        { from: 'styles/result.css', to: 'styles/result.css' },
-        { from: 'result.jsp' }
-      ],
-      {
-        context: './src/main/webapp',
-        copyUnmodified: true
-      }
+    new webpack.ProvidePlugin(
+      generateProviders([
+        {name: 'controls', file: './global.js'},
+        {name: 'elements', file: './global.js'},
+        {name: 'mouse', file: './global.js'},
+        {name: 'entities', file: './global.js'},
+        {name: 'Stage', file: './stage.js'},
+        {name: 'Player', file: './player.js'},
+        {name: 'Socket', file: './websocket.js'},
+        {name: 'Enemies', file: './enemies.js'},
+        {name: 'ChatHandler', file: './chat.js'},
+        {name: 'GameLoop', file: './gameloop.js'},
+        {name: 'Foods', file: './foods.js'},
+        {name: 'PerfMonitor', file: './perf-monitor.js'},
+        {name: 'Leaderboard', file: './leaderboard.js'}
+      ])
     ),
 
-    new HtmlWebpackPlugin({
-      template: 'src/main/webapp/index.html',
-      filename: 'index.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: false
-      }
-    }),
-
-    new webpack.ProvidePlugin(generateProviders([
-      {name: 'controls', file: './global.js'},
-      {name: 'elements', file: './global.js'},
-      {name: 'mouse', file: './global.js'},
-      {name: 'entities', file: './global.js'},
-      {name: 'Stage', file: './stage.js'},
-      {name: 'Player', file: './player.js'},
-      {name: 'Socket', file: './websocket.js'},
-      {name: 'Enemies', file: './enemies.js'},
-      {name: 'ChatHandler', file: './chat.js'},
-      {name: 'GameLoop', file: './gameloop.js'},
-      {name: 'Foods', file: './foods.js'},
-      {name: 'PerfMonitor', file: './perf-monitor.js'},
-      {name: 'Leaderboard', file: './leaderboard.js'}
-    ])),
-
-    new webpack
-      .optimize
-      .UglifyJsPlugin({
-        compress: {
-          unused: false
-        },
-        comments: false
-      })
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        unused: false
+      },
+      comments: false
+    })
   ]
 }
-
-module.exports = config
 
 function generateProviders(dependencies) {
   return dependencies.reduce((outObj, depen) => {
@@ -153,3 +111,5 @@ function generateExportLoaders(dependencies) {
     return outObj
   }, [])
 }
+
+module.exports = baseConfig

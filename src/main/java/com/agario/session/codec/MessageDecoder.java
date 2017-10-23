@@ -2,7 +2,7 @@ package com.agario.session.codec;
 
 /**
  * This class decodes the WebSocket message string using its delimiters to split
- * it to its descrete attributes.
+ * it to its respective attributes.
  * @author jaskaran
  */
 public class MessageDecoder {

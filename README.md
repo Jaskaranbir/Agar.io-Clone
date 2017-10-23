@@ -157,6 +157,14 @@ As one the project requirements to keep the main syntax purely ES5 (and taking i
 
 The first step is Webpack bundling files to `src/main/webapp/dist`, followed by compiling java classes, and finally bundling to `war` file.
 
+Webpack configs are split into 3 parts:
+
+* Base config (inherited by below configs)
+* Regular config (for all non-jsp files)
+* JSP config (specifically for jsp files (yeah -.-))
+
+Webpack builds are built in parallel using `parallel-webpack`, consisting above configs.
+
 ----------
 
 ## FAQs
@@ -187,7 +195,7 @@ Yes of course! Any contribution (including bug reporting) is highly appreciated 
 
 * **How do I contribute?**
 
-Simply create a [Pull Request][20]. I will approve your changes and commit them if relevant. And of course, add you as contributor in a credits section (to be created).
+Simply create a [Pull Request][20]. I will approve your changes and merge them if relevant. And of course, add you as contributor in a credits section (to be created).
 
 * **Where can I report bugs/queries?**
 
