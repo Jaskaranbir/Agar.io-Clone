@@ -24,7 +24,7 @@ if [ $status == 0 ]; then
 
   if [ $status != 0 ]; then
     echo "---------------------------------------------------------"
-    echo "An error occured; failed t deploy application on Tomcat"
+    echo "An error occured; failed to deploy application on Tomcat"
     echo "---------------------------------------------------------"
   fi
 
